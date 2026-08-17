@@ -4,7 +4,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -20,19 +19,404 @@
         rel="stylesheet"
         href="{% static 'css/style.css' %}">
 
+
+    <style>
+
+        /* =====================================================
+           SEARCH RESULT ANIMATION
+        ===================================================== */
+
+        .bike-card {
+            animation: searchCardIn 0.65s ease-out both;
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .col-lg-4:nth-child(1) .bike-card {
+            animation-delay: 0.05s;
+        }
+
+        .col-lg-4:nth-child(2) .bike-card {
+            animation-delay: 0.12s;
+        }
+
+        .col-lg-4:nth-child(3) .bike-card {
+            animation-delay: 0.19s;
+        }
+
+        .col-lg-4:nth-child(4) .bike-card {
+            animation-delay: 0.26s;
+        }
+
+        .col-lg-4:nth-child(5) .bike-card {
+            animation-delay: 0.33s;
+        }
+
+        .col-lg-4:nth-child(6) .bike-card {
+            animation-delay: 0.40s;
+        }
+
+        @keyframes searchCardIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(30px)
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           CARD HOVER
+        ===================================================== */
+
+        .bike-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(0,0,0,0.13);
+
+        }
+
+
+        /* =====================================================
+           IMAGE ANIMATION
+        ===================================================== */
+
+        .bike-image {
+
+            transition:
+                transform 0.5s ease;
+
+        }
+
+        .bike-card:hover .bike-image {
+
+            transform:
+                scale(1.05);
+
+        }
+
+
+        /* =====================================================
+           VIEW DETAILS BUTTON
+        ===================================================== */
+
+        .details-btn {
+
+            position: relative !important;
+
+            display: inline-flex !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            width: 100% !important;
+
+            padding: 13px 20px !important;
+
+            margin-top: 18px !important;
+
+            background: #111827 !important;
+
+            color: white !important;
+
+            border: none !important;
+
+            border-radius: 10px !important;
+
+            text-decoration: none !important;
+
+            font-size: 14px !important;
+
+            font-weight: 700 !important;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .details-btn::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -120%;
+
+            width: 70%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent,
+                    rgba(255,255,255,0.4),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.6s ease;
+
+        }
+
+
+        .details-btn:hover {
+
+            background: #2563eb !important;
+
+            color: white !important;
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,99,235,0.35);
+
+        }
+
+
+        .details-btn:hover::before {
+
+            left: 130%;
+
+        }
+
+
+        .details-btn::after {
+
+            content: "→";
+
+            margin-left: 7px;
+
+            font-size: 17px;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .details-btn:hover::after {
+
+            transform:
+                translateX(6px);
+
+        }
+
+
+        .details-btn:active {
+
+            transform:
+                translateY(-1px)
+                scale(0.98);
+
+        }
+
+
+        /* =====================================================
+           SEARCH BUTTON
+        ===================================================== */
+
+        .search-box button {
+
+            position: relative !important;
+
+            background: #111827 !important;
+
+            color: white !important;
+
+            border: none !important;
+
+            border-radius: 10px !important;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .search-box button::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -120%;
+
+            width: 70%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent,
+                    rgba(255,255,255,0.35),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.6s ease;
+
+        }
+
+
+        .search-box button:hover {
+
+            background: #2563eb !important;
+
+            color: white !important;
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(37,99,235,0.35);
+
+        }
+
+
+        .search-box button:hover::before {
+
+            left: 130%;
+
+        }
+
+
+        /* =====================================================
+           BACK ARROW
+        ===================================================== */
+
+        .search-back-arrow {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 42px;
+
+            height: 42px;
+
+            color: white;
+
+            border: 2px solid
+                rgba(255,255,255,0.7);
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 27px;
+
+            font-weight: bold;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .search-back-arrow:hover {
+
+            background: white;
+
+            color: #212529;
+
+            transform:
+                translateX(-5px);
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 576px) {
+
+            .details-btn {
+
+                padding: 12px 16px !important;
+
+                font-size: 13px !important;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            * {
+
+                animation-duration:
+                    0.01ms !important;
+
+                transition-duration:
+                    0.01ms !important;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <nav class="navbar navbar-dark bg-dark">
 
     <div class="container">
-
-        <!-- ONLY BACK ARROW -->
 
         <a
             href="/"
@@ -47,21 +431,23 @@
 </nav>
 
 
-<!-- ================= SEARCH PAGE ================= -->
+
+<!-- =====================================================
+     SEARCH PAGE
+===================================================== -->
 
 <section class="brand-page">
 
     <div class="container">
 
 
-        <!-- ================= HEADER ================= -->
+        <!-- HEADER -->
 
         <div class="brand-page-header text-center">
 
             <span>
                 SEARCH RESULTS
             </span>
-
 
             <h1>
 
@@ -77,7 +463,6 @@
 
             </h1>
 
-
             <p>
                 Find your favourite motorcycle
             </p>
@@ -85,7 +470,8 @@
         </div>
 
 
-        <!-- ================= SEARCH BAR ================= -->
+
+        <!-- SEARCH BAR -->
 
         <div class="search-box mb-5">
 
@@ -103,7 +489,6 @@
                     required
                 >
 
-
                 <button type="submit">
                     Search
                 </button>
@@ -113,14 +498,17 @@
         </div>
 
 
-        <!-- ================= BIKE GRID ================= -->
+
+        <!-- BIKE GRID -->
 
         <div class="row g-4">
 
 
             {% for bike in bikes %}
 
+
             <div class="col-lg-4 col-md-6">
+
 
                 <div class="bike-card">
 
@@ -129,19 +517,20 @@
 
                     {% if bike.image %}
 
-                    <img
-                        src="{{ bike.image.url }}"
-                        alt="{{ bike.name }}"
-                        class="bike-image"
-                    >
+                        <img
+                            src="{{ bike.image.url }}"
+                            alt="{{ bike.name }}"
+                            class="bike-image"
+                        >
 
                     {% else %}
 
-                    <div class="no-image">
-                        🏍️
-                    </div>
+                        <div class="no-image">
+                            🏍️
+                        </div>
 
                     {% endif %}
+
 
 
                     <!-- DETAILS -->
@@ -149,21 +538,15 @@
                     <div class="bike-card-body">
 
 
-                        <!-- BRAND -->
-
                         <span class="bike-brand">
                             {{ bike.brand }}
                         </span>
 
 
-                        <!-- BIKE NAME -->
-
                         <h2>
                             {{ bike.name }}
                         </h2>
 
-
-                        <!-- BASIC INFORMATION -->
 
                         <div class="bike-info">
 
@@ -223,6 +606,7 @@
                         </div>
 
 
+
                         <!-- VIEW DETAILS -->
 
                         <a
@@ -235,7 +619,9 @@
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
@@ -243,7 +629,7 @@
             {% empty %}
 
 
-            <!-- ================= NO RESULT ================= -->
+            <!-- NO RESULT -->
 
             <div class="col-12">
 
@@ -253,14 +639,10 @@
                         😕 No bikes found
                     </h3>
 
-
                     <p>
-
                         We couldn't find any bike
                         matching "{{ query }}".
-
                     </p>
-
 
                     <a href="/">
                         Back to BikeVerse
@@ -281,7 +663,8 @@
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -291,14 +674,11 @@
             🏍️ BikeVerse
         </h4>
 
-
         <p>
             Complete Bike Information Platform
         </p>
 
-
         <hr>
-
 
         <small>
             © 2026 BikeVerse
@@ -307,62 +687,6 @@
     </div>
 
 </footer>
-
-
-<!-- ================= ARROW STYLE ================= -->
-
-<style>
-
-.search-back-arrow {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 42px;
-
-    height: 42px;
-
-    background: transparent;
-
-    color: white;
-
-    border: 2px solid rgba(255,255,255,0.7);
-
-    border-radius: 10px;
-
-    text-decoration: none;
-
-    font-size: 27px;
-
-    font-weight: bold;
-
-    line-height: 1;
-
-    transition:
-        all 0.25s ease;
-
-}
-
-
-.search-back-arrow:hover {
-
-    background: white;
-
-    color: #212529;
-
-    transform:
-        translateX(-4px);
-
-    box-shadow:
-        0 5px 15px
-        rgba(255,255,255,0.2);
-
-}
-
-</style>
 
 
 </body>
