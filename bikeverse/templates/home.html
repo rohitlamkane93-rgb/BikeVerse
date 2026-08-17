@@ -1,0 +1,1690 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BikeVerse | Find Your Perfect Ride</title>
+
+
+    <!-- ================= BOOTSTRAP ================= -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- ================= MAIN CSS ================= -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+            min-height: 100%;
+
+        }
+
+
+        body {
+
+            background: #f5f7fa;
+
+            color: #111827;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .main-navbar {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b1120,
+                    #111827
+                );
+
+            padding: 10px 0;
+
+            position: relative;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 4px 18px
+                rgba(0,0,0,0.14);
+
+        }
+
+
+        .navbar-inner {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+        }
+
+
+        .navbar-brand {
+
+            color: white !important;
+
+            text-decoration: none;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.3px;
+
+            white-space: nowrap;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .navbar-brand:hover {
+
+            color: #bfdbfe !important;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .navbar-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 6px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .nav-action {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding:
+                6px 10px;
+
+            border-radius: 7px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.1px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.14);
+
+            background:
+                rgba(255,255,255,0.05);
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .nav-action:hover {
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.13);
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .nav-register {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            border-color:
+                transparent;
+
+        }
+
+
+        .nav-register:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d4ed8,
+                    #4338ca
+                );
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero-section {
+
+            min-height: 470px;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b1120 0%,
+                    #111827 52%,
+                    #1e293b 100%
+                );
+
+        }
+
+
+        .hero-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 310px;
+
+            height: 310px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37,99,235,0.12);
+
+            top: -125px;
+
+            right: -75px;
+
+            filter: blur(4px);
+
+        }
+
+
+        .hero-section::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(59,130,246,0.07);
+
+            bottom: -115px;
+
+            left: -60px;
+
+        }
+
+
+        .hero-content {
+
+            max-width: 760px;
+
+            margin: auto;
+
+            text-align: center;
+
+            padding:
+                40px 18px 45px;
+
+            position: relative;
+
+            z-index: 2;
+
+            animation:
+                heroReveal
+                0.7s
+                ease-out;
+
+        }
+
+
+        @keyframes heroReveal {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(22px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BADGE
+        ===================================================== */
+
+        .hero-badge {
+
+            display: inline-block;
+
+            padding:
+                5px 11px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.14);
+
+            color: #bfdbfe;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.6px;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .hero-title {
+
+            margin: 0;
+
+            font-size:
+                clamp(34px, 5vw, 54px);
+
+            line-height: 1.03;
+
+            font-weight: 800;
+
+            letter-spacing: -1.5px;
+
+        }
+
+
+        .hero-title span {
+
+            color: #60a5fa;
+
+        }
+
+
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
+
+        .hero-description {
+
+            max-width: 560px;
+
+            margin:
+                14px auto 0;
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+
+            line-height: 1.55;
+
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        .hero-search {
+
+            max-width: 600px;
+
+            margin:
+                22px auto 0;
+
+        }
+
+
+        .search-form {
+
+            display: flex;
+
+            gap: 8px;
+
+            padding: 6px;
+
+            background: white;
+
+            border-radius: 11px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.20);
+
+        }
+
+
+        .smart-search {
+
+            position: relative;
+
+            flex: 1;
+
+        }
+
+
+        .smart-search input {
+
+            width: 100%;
+
+            height: 42px;
+
+            border: none;
+
+            outline: none;
+
+            padding:
+                0 13px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            color: #111827;
+
+            background: white;
+
+        }
+
+
+        .smart-search input:focus {
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37,99,235,0.10);
+
+        }
+
+
+        .search-button {
+
+            height: 42px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            padding:
+                0 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .search-button:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 7px 16px
+                rgba(37,99,235,0.25);
+
+        }
+
+
+        /* =====================================================
+           SEARCH SUGGESTIONS
+        ===================================================== */
+
+        .suggestions-box {
+
+            position: absolute;
+
+            top:
+                calc(100% + 7px);
+
+            left: 0;
+
+            width: 100%;
+
+            background: white;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 12px 25px
+                rgba(0,0,0,0.15);
+
+            max-height: 0;
+
+            overflow-y: auto;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform:
+                translateY(-6px);
+
+            z-index: 9999;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .suggestions-box.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            max-height: 260px;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .suggestion {
+
+            display: none;
+
+            align-items: center;
+
+            gap: 10px;
+
+            width: 100%;
+
+            padding:
+                9px 12px;
+
+            background: white;
+
+            color: #111827;
+
+            border: none;
+
+            border-bottom:
+                1px solid #f1f5f9;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease;
+
+        }
+
+
+        .suggestion:hover {
+
+            background: #f8fafc;
+
+        }
+
+
+        .suggestion-icon {
+
+            width: 32px;
+
+            height: 32px;
+
+            min-width: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #f1f5f9;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+        }
+
+
+        .suggestion-info strong {
+
+            display: block;
+
+            font-size: 12px;
+
+        }
+
+
+        .suggestion-info span {
+
+            display: block;
+
+            font-size: 10px;
+
+            color: #6b7280;
+
+            margin-top: 1px;
+
+        }
+
+
+        /* =====================================================
+           HERO BUTTONS
+        ===================================================== */
+
+        .hero-actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            margin-top: 17px;
+
+        }
+
+
+        .hero-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                8px 15px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .hero-btn-primary {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+        }
+
+
+        .hero-btn-primary:hover {
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 16px
+                rgba(37,99,235,0.22);
+
+        }
+
+
+        .hero-btn-secondary {
+
+            background:
+                rgba(255,255,255,0.08);
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.18);
+
+        }
+
+
+        .hero-btn-secondary:hover {
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.15);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats-section {
+
+            margin-top: -24px;
+
+            position: relative;
+
+            z-index: 5;
+
+        }
+
+
+        .stats-card {
+
+            background: white;
+
+            border-radius: 13px;
+
+            padding:
+                16px 10px;
+
+            box-shadow:
+                0 8px 24px
+                rgba(0,0,0,0.08);
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            text-align: center;
+
+        }
+
+
+        .stat {
+
+            padding:
+                3px 10px;
+
+            border-right:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .stat:last-child {
+
+            border-right: none;
+
+        }
+
+
+        .stat h3 {
+
+            margin: 0;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            color: #111827;
+
+        }
+
+
+        .stat p {
+
+            margin:
+                3px 0 0;
+
+            color: #6b7280;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.4px;
+
+        }
+
+
+        /* =====================================================
+           PREMIUM MINI FOOTER
+        ===================================================== */
+
+        .mini-footer {
+
+            text-align: center;
+
+            padding:
+                11px 10px;
+
+            margin-top: 14px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            color: #64748b;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+            letter-spacing: 0.8px;
+
+        }
+
+
+        .mini-footer span {
+
+            color: #cbd5e1;
+
+            margin:
+                0 4px;
+
+        }
+
+
+        .mini-footer strong {
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color:
+                transparent;
+
+            background-clip: text;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            .navbar-inner {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .navbar-actions {
+
+                justify-content:
+                    flex-start;
+
+            }
+
+
+            .hero-section {
+
+                min-height: 545px;
+
+            }
+
+
+            .hero-content {
+
+                padding:
+                    45px 15px 55px;
+
+            }
+
+
+            .hero-title {
+
+                font-size: 40px;
+
+            }
+
+
+            .hero-description {
+
+                font-size: 13px;
+
+            }
+
+
+            .search-form {
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .search-button {
+
+                width: 100%;
+
+            }
+
+
+            .hero-actions {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    center;
+
+            }
+
+
+            .hero-btn {
+
+                width: 205px;
+
+            }
+
+
+            .stats-card {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+                gap: 10px;
+
+            }
+
+
+            .stat {
+
+                border-right: none;
+
+                border-bottom:
+                    1px solid #e5e7eb;
+
+                padding-bottom: 10px;
+
+            }
+
+
+            .stat:nth-child(3),
+            .stat:nth-child(4) {
+
+                border-bottom: none;
+
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .hero-title {
+
+                font-size: 35px;
+
+            }
+
+
+            .nav-action {
+
+                font-size: 10px;
+
+                padding:
+                    5px 8px;
+
+            }
+
+
+            .mini-footer {
+
+                font-size: 9px;
+
+                letter-spacing: 0.5px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="main-navbar">
+
+    <div class="container">
+
+        <div class="navbar-inner">
+
+
+            <a
+                class="navbar-brand"
+                href="{% url 'home' %}"
+            >
+                🏍️ BikeVerse
+            </a>
+
+
+            <div class="navbar-actions">
+
+
+                <!-- COMPARE -->
+
+                <a
+                    href="{% url 'compare_bikes' %}"
+                    class="nav-action"
+                >
+                    ⚖️ Compare
+                </a>
+
+
+                {% if user.is_authenticated %}
+
+                    <!-- LOGOUT -->
+
+                    <a
+                        href="{% url 'logout' %}"
+                        class="nav-action"
+                    >
+                        🚪 Logout
+                    </a>
+
+                {% else %}
+
+                    <!-- LOGIN -->
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="nav-action"
+                    >
+                        🔐 Login
+                    </a>
+
+
+                    <!-- REGISTER -->
+
+                    <a
+                        href="{% url 'register' %}"
+                        class="nav-action nav-register"
+                    >
+                        📝 Register
+                    </a>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero-section">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+
+            <!-- BADGE -->
+
+            <span class="hero-badge">
+                THE BIKE INFORMATION PLATFORM
+            </span>
+
+
+            <!-- TITLE -->
+
+            <h1 class="hero-title">
+
+                Find Your
+                <span>Perfect Ride.</span>
+
+            </h1>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="hero-description">
+
+                Explore bikes, compare specifications,
+                discover brands and find everything
+                you need before choosing your next ride.
+
+            </p>
+
+
+            <!-- =================================================
+                 SEARCH
+            ================================================== -->
+
+            <div class="hero-search">
+
+                <form
+                    method="GET"
+                    action="{% url 'search_bikes' %}"
+                    id="searchForm"
+                    class="search-form"
+                >
+
+
+                    <div class="smart-search">
+
+
+                        <input
+                            type="text"
+                            name="q"
+                            id="bikeSearch"
+                            placeholder="Search bike or brand..."
+                            autocomplete="off"
+                            required
+                        >
+
+
+                        <!-- SUGGESTIONS -->
+
+                        <div
+                            id="suggestions"
+                            class="suggestions-box"
+                        >
+
+
+                            {% for bike in bikes %}
+
+
+                            <div
+                                class="suggestion"
+                                data-name="{{ bike.name }}"
+                                data-brand="{{ bike.brand }}"
+                                role="button"
+                                tabindex="0"
+                            >
+
+
+                                <div class="suggestion-icon">
+                                    🏍️
+                                </div>
+
+
+                                <div class="suggestion-info">
+
+                                    <strong>
+                                        {{ bike.name }}
+                                    </strong>
+
+                                    <span>
+                                        {{ bike.brand }}
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="search-button"
+                    >
+                        🔎 Search
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- =================================================
+                 HERO ACTIONS
+            ================================================== -->
+
+            <div class="hero-actions">
+
+
+                <!-- POPULAR BRANDS PAGE -->
+
+                <a
+                    href="{% url 'popular_brands' %}"
+                    class="hero-btn hero-btn-primary"
+                >
+                    Explore Bikes →
+                </a>
+
+
+                <!-- COMPARE -->
+
+                <a
+                    href="{% url 'compare_bikes' %}"
+                    class="hero-btn hero-btn-secondary"
+                >
+                    ⚖️ Compare Bikes
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="stats-card">
+
+
+            <div class="stat">
+
+                <h3>
+                    200+
+                </h3>
+
+                <p>
+                    BIKES
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3>
+                    7
+                </h3>
+
+                <p>
+                    BRANDS
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3>
+                    50+
+                </h3>
+
+                <p>
+                    SPECIFICATIONS
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3>
+                    100%
+                </h3>
+
+                <p>
+                    FREE
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PREMIUM CREDIT
+===================================================== -->
+
+<footer class="mini-footer">
+
+    © 2026 BikeVerse
+
+    <span>
+        •
+    </span>
+
+    Crafted by
+
+    <strong>
+        Rohit Lamkane & Ramkrushna Sathe
+    </strong>
+
+</footer>
+
+
+
+<!-- =====================================================
+     SMART SEARCH JAVASCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const input =
+            document.getElementById(
+                "bikeSearch"
+            );
+
+
+        const box =
+            document.getElementById(
+                "suggestions"
+            );
+
+
+        const form =
+            document.getElementById(
+                "searchForm"
+            );
+
+
+        const items =
+            document.querySelectorAll(
+                ".suggestion"
+            );
+
+
+        /* =================================================
+           SEARCH INPUT
+        ================================================= */
+
+        input.addEventListener(
+            "input",
+            function () {
+
+
+                const value =
+                    input.value
+                        .toLowerCase()
+                        .trim();
+
+
+                let found = false;
+
+
+                items.forEach(
+                    function (item) {
+
+
+                        const name =
+                            (
+                                item.getAttribute(
+                                    "data-name"
+                                ) || ""
+                            ).toLowerCase();
+
+
+                        const brand =
+                            (
+                                item.getAttribute(
+                                    "data-brand"
+                                ) || ""
+                            ).toLowerCase();
+
+
+                        if (
+                            value !== "" &&
+                            (
+                                name.includes(value) ||
+                                brand.includes(value)
+                            )
+                        ) {
+
+
+                            item.style.display =
+                                "flex";
+
+
+                            found = true;
+
+
+                        }
+                        else {
+
+
+                            item.style.display =
+                                "none";
+
+
+                        }
+
+                    }
+                );
+
+
+                if (
+                    found &&
+                    value !== ""
+                ) {
+
+
+                    box.classList.add(
+                        "show"
+                    );
+
+
+                }
+                else {
+
+
+                    box.classList.remove(
+                        "show"
+                    );
+
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           SUGGESTION CLICK
+        ================================================= */
+
+        items.forEach(
+            function (item) {
+
+
+                item.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const bikeName =
+                            item.getAttribute(
+                                "data-name"
+                            );
+
+
+                        if (!bikeName) {
+
+                            return;
+
+                        }
+
+
+                        window.location.href =
+                            "{% url 'search_bikes' %}" +
+                            "?q=" +
+                            encodeURIComponent(
+                                bikeName
+                            );
+
+                    }
+                );
+
+
+            }
+        );
+
+
+        /* =================================================
+           ENTER KEY
+        ================================================= */
+
+        items.forEach(
+            function (item) {
+
+
+                item.addEventListener(
+                    "keydown",
+                    function (event) {
+
+
+                        if (
+                            event.key === "Enter"
+                        ) {
+
+
+                            event.preventDefault();
+
+
+                            item.click();
+
+
+                        }
+
+                    }
+                );
+
+
+            }
+        );
+
+
+        /* =================================================
+           CLICK OUTSIDE
+        ================================================= */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+
+                if (
+                    !event.target.closest(
+                        ".smart-search"
+                    )
+                ) {
+
+
+                    box.classList.remove(
+                        "show"
+                    );
+
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           FORM SUBMIT
+        ================================================= */
+
+        form.addEventListener(
+            "submit",
+            function () {
+
+
+                box.classList.remove(
+                    "show"
+                );
+
+
+            }
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

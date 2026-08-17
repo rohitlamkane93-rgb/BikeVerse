@@ -1,0 +1,370 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Search | BikeVerse</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+
+        <!-- ONLY BACK ARROW -->
+
+        <a
+            href="/"
+            class="search-back-arrow"
+            title="Back Home"
+        >
+            ←
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= SEARCH PAGE ================= -->
+
+<section class="brand-page">
+
+    <div class="container">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="brand-page-header text-center">
+
+            <span>
+                SEARCH RESULTS
+            </span>
+
+
+            <h1>
+
+                {% if query %}
+
+                    Results for "{{ query }}"
+
+                {% else %}
+
+                    Search Bikes
+
+                {% endif %}
+
+            </h1>
+
+
+            <p>
+                Find your favourite motorcycle
+            </p>
+
+        </div>
+
+
+        <!-- ================= SEARCH BAR ================= -->
+
+        <div class="search-box mb-5">
+
+            <form
+                method="GET"
+                action="{% url 'search_bikes' %}"
+            >
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Search bike or brand..."
+                    autocomplete="off"
+                    required
+                >
+
+
+                <button type="submit">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ================= BIKE GRID ================= -->
+
+        <div class="row g-4">
+
+
+            {% for bike in bikes %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="bike-card">
+
+
+                    <!-- IMAGE -->
+
+                    {% if bike.image %}
+
+                    <img
+                        src="{{ bike.image.url }}"
+                        alt="{{ bike.name }}"
+                        class="bike-image"
+                    >
+
+                    {% else %}
+
+                    <div class="no-image">
+                        🏍️
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- DETAILS -->
+
+                    <div class="bike-card-body">
+
+
+                        <!-- BRAND -->
+
+                        <span class="bike-brand">
+                            {{ bike.brand }}
+                        </span>
+
+
+                        <!-- BIKE NAME -->
+
+                        <h2>
+                            {{ bike.name }}
+                        </h2>
+
+
+                        <!-- BASIC INFORMATION -->
+
+                        <div class="bike-info">
+
+
+                            <div>
+
+                                <span>
+                                    Engine
+                                </span>
+
+                                <strong>
+                                    {{ bike.engine }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Mileage
+                                </span>
+
+                                <strong>
+                                    {{ bike.mileage }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Power
+                                </span>
+
+                                <strong>
+                                    {{ bike.power }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Top Speed
+                                </span>
+
+                                <strong>
+                                    {{ bike.top_speed }}
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- VIEW DETAILS -->
+
+                        <a
+                            href="{% url 'bike_detail' bike.id %}"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {% empty %}
+
+
+            <!-- ================= NO RESULT ================= -->
+
+            <div class="col-12">
+
+                <div class="empty-message">
+
+                    <h3>
+                        😕 No bikes found
+                    </h3>
+
+
+                    <p>
+
+                        We couldn't find any bike
+                        matching "{{ query }}".
+
+                    </p>
+
+
+                    <a href="/">
+                        Back to BikeVerse
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <h4>
+            🏍️ BikeVerse
+        </h4>
+
+
+        <p>
+            Complete Bike Information Platform
+        </p>
+
+
+        <hr>
+
+
+        <small>
+            © 2026 BikeVerse
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= ARROW STYLE ================= -->
+
+<style>
+
+.search-back-arrow {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 42px;
+
+    height: 42px;
+
+    background: transparent;
+
+    color: white;
+
+    border: 2px solid rgba(255,255,255,0.7);
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    transition:
+        all 0.25s ease;
+
+}
+
+
+.search-back-arrow:hover {
+
+    background: white;
+
+    color: #212529;
+
+    transform:
+        translateX(-4px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(255,255,255,0.2);
+
+}
+
+</style>
+
+
+</body>
+
+</html>

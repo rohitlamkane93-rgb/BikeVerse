@@ -1,0 +1,1511 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>BikeVerse | Compare Bikes</title>
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/style.css' %}"
+>
+
+<style>
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body {
+    background: #f5f7fa;
+    margin: 0;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.compare-navbar {
+    background: #111827;
+    padding: 14px 0;
+
+    animation: navbarDrop 0.6s ease-out;
+}
+
+@keyframes navbarDrop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 18px;
+}
+
+
+/* =====================================================
+   BACK ARROW
+===================================================== */
+
+.back-arrow {
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 30px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation: arrowReveal 0.7s ease-out;
+}
+
+
+@keyframes arrowReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+.back-arrow:hover {
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    transform:
+        translateX(-5px)
+        scale(1.06);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,0.25);
+}
+
+
+.back-arrow:active {
+
+    transform:
+        translateX(-7px)
+        scale(0.92);
+}
+
+
+/* =====================================================
+   BIKEVERSE TITLE
+===================================================== */
+
+.navbar-title {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    animation:
+        titleReveal
+        0.7s
+        ease-out
+        0.15s
+        both;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+@keyframes titleReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+.navbar-title:hover {
+
+    color: white;
+
+    opacity: 0.85;
+
+    transform: translateX(3px);
+}
+
+
+/* =====================================================
+   MAIN PAGE ANIMATION
+===================================================== */
+
+.compare-page {
+
+    padding: 45px 0 70px;
+
+    animation:
+        pageFade
+        0.7s
+        ease-out;
+}
+
+
+@keyframes pageFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.compare-title {
+
+    text-align: center;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    animation:
+        titleFade
+        0.7s
+        ease-out
+        0.1s
+        both;
+}
+
+
+@keyframes titleFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+.compare-subtitle {
+
+    text-align: center;
+
+    color: #6b7280;
+
+    margin-bottom: 35px;
+
+    animation:
+        subtitleFade
+        0.7s
+        ease-out
+        0.2s
+        both;
+}
+
+
+@keyframes subtitleFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   SELECT CARD
+===================================================== */
+
+.select-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.08);
+
+    height: 100%;
+
+    animation:
+        cardFade
+        0.7s
+        ease-out
+        0.3s
+        both;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+@keyframes cardFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+.select-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.12);
+}
+
+
+.select-card h4 {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+.select-card select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #d1d5db;
+
+    border-radius: 9px;
+
+    background: white;
+
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.select-card select:focus {
+
+    border-color: #111827;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(17,24,39,0.08);
+}
+
+
+/* =====================================================
+   VS
+===================================================== */
+
+.vs-box {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 100%;
+
+    animation:
+        vsFade
+        0.7s
+        ease-out
+        0.45s
+        both;
+}
+
+
+@keyframes vsFade {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1);
+    }
+
+}
+
+
+.vs-circle {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: #111827;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.vs-circle:hover {
+
+    transform:
+        scale(1.08)
+        rotate(5deg);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0,0,0,0.22);
+}
+
+
+/* =====================================================
+   COMPARE BUTTON
+===================================================== */
+
+.compare-button-area {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    margin-bottom: 40px;
+
+    animation:
+        buttonFade
+        0.7s
+        ease-out
+        0.5s
+        both;
+}
+
+
+@keyframes buttonFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+.compare-button {
+
+    border: none;
+
+    background: #111827;
+
+    color: white;
+
+    padding: 12px 30px;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.compare-button:hover {
+
+    background: #000;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,0.20);
+}
+
+
+.compare-button:active {
+
+    transform:
+        translateY(0)
+        scale(0.96);
+}
+
+
+/* =====================================================
+   RESULT TITLE
+===================================================== */
+
+.result-title {
+
+    text-align: center;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+
+    animation:
+        resultFade
+        0.7s
+        ease-out;
+}
+
+
+@keyframes resultFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   RESULT CARD
+===================================================== */
+
+.bike-result-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.08);
+
+    height: 100%;
+
+    animation:
+        resultCardFade
+        0.7s
+        ease-out
+        both;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.col-md-6:first-child
+.bike-result-card {
+
+    animation-delay:
+        0.15s;
+}
+
+
+.col-md-6:last-child
+.bike-result-card {
+
+    animation-delay:
+        0.3s;
+}
+
+
+@keyframes resultCardFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+.bike-result-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(0,0,0,0.14);
+}
+
+
+/* =====================================================
+   BIKE IMAGE
+===================================================== */
+
+.bike-image-box {
+
+    height: 220px;
+
+    background: #f1f5f9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+.bike-image-box img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 15px;
+
+    animation:
+        imageFade
+        0.8s
+        ease-out
+        0.2s
+        both;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+@keyframes imageFade {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1);
+    }
+
+}
+
+
+.bike-result-card:hover
+.bike-image-box img {
+
+    transform:
+        scale(1.05);
+}
+
+
+.bike-no-image {
+
+    font-size: 65px;
+
+    animation:
+        imageFade
+        0.7s
+        ease-out;
+}
+
+
+/* =====================================================
+   BIKE CONTENT
+===================================================== */
+
+.bike-result-content {
+
+    padding: 22px;
+}
+
+
+.bike-result-content h3 {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+
+.bike-brand {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   SPEC TABLE
+===================================================== */
+
+.spec-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.spec-table tr {
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.spec-table tr:hover {
+
+    background:
+        #f8fafc;
+
+    transform:
+        translateX(3px);
+}
+
+
+.spec-table tr:last-child {
+
+    border-bottom: none;
+}
+
+
+.spec-table td {
+
+    padding: 11px 5px;
+
+    font-size: 14px;
+}
+
+
+.spec-name {
+
+    color: #6b7280;
+
+    font-weight: 500;
+}
+
+
+.spec-value {
+
+    text-align: right;
+
+    color: #111827;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   EMPTY RESULT
+===================================================== */
+
+.empty-result {
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.06);
+
+    animation:
+        emptyFade
+        0.7s
+        ease-out;
+}
+
+
+@keyframes emptyFade {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .compare-page {
+
+        padding:
+            30px 15px 50px;
+    }
+
+
+    .compare-title {
+
+        font-size: 26px;
+    }
+
+
+    .vs-box {
+
+        margin: 15px 0;
+    }
+
+
+    .vs-circle {
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 14px;
+    }
+
+
+    .bike-image-box {
+
+        height: 190px;
+    }
+
+
+    .navbar-title {
+
+        font-size: 19px;
+    }
+
+
+    .back-arrow {
+
+        font-size: 27px;
+
+        width: 38px;
+
+        height: 38px;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="compare-navbar">
+
+    <div class="container">
+
+        <div class="navbar-content">
+
+
+            <a
+                href="/"
+                class="back-arrow"
+                title="Back"
+            >
+                ←
+            </a>
+
+
+            <a
+                href="/"
+                class="navbar-title"
+            >
+                🏍️ BikeVerse
+            </a>
+
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="compare-page">
+
+<div class="container">
+
+
+    <h1 class="compare-title">
+        Compare Bikes
+    </h1>
+
+
+    <p class="compare-subtitle">
+        Select two bikes to compare their specifications
+    </p>
+
+
+    <!-- =================================================
+         SELECT FORM
+    ================================================= -->
+
+    <form
+        method="GET"
+        action="{% url 'compare_bikes' %}"
+    >
+
+        <div class="row g-4 align-items-center">
+
+
+            <!-- BIKE 1 -->
+
+            <div class="col-md-5">
+
+                <div class="select-card">
+
+                    <h4>
+                        🏍️ Select Bike 1
+                    </h4>
+
+                    <select
+                        name="bike1"
+                        required
+                    >
+
+                        <option value="">
+                            Choose first bike
+                        </option>
+
+
+                        {% for bike in bikes %}
+
+                        <option
+                            value="{{ bike.id }}"
+                            {% if bike1 and bike1.id == bike.id %}
+                                selected
+                            {% endif %}
+                        >
+
+                            {{ bike.name }} -
+                            {{ bike.brand }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- VS -->
+
+            <div class="col-md-2">
+
+                <div class="vs-box">
+
+                    <div class="vs-circle">
+                        VS
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIKE 2 -->
+
+            <div class="col-md-5">
+
+                <div class="select-card">
+
+                    <h4>
+                        🏍️ Select Bike 2
+                    </h4>
+
+                    <select
+                        name="bike2"
+                        required
+                    >
+
+                        <option value="">
+                            Choose second bike
+                        </option>
+
+
+                        {% for bike in bikes %}
+
+                        <option
+                            value="{{ bike.id }}"
+                            {% if bike2 and bike2.id == bike.id %}
+                                selected
+                            {% endif %}
+                        >
+
+                            {{ bike.name }} -
+                            {{ bike.brand }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPARE BUTTON -->
+
+        <div class="compare-button-area">
+
+            <button
+                type="submit"
+                class="compare-button"
+            >
+                Compare Bikes
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- =================================================
+         COMPARISON RESULT
+    ================================================= -->
+
+    {% if bike1 and bike2 %}
+
+
+    <h2 class="result-title">
+        Comparison Result
+    </h2>
+
+
+    <div class="row g-4">
+
+
+        <!-- =================================================
+             BIKE 1
+        ================================================= -->
+
+        <div class="col-md-6">
+
+            <div class="bike-result-card">
+
+
+                <div class="bike-image-box">
+
+                    {% if bike1.image %}
+
+                        <img
+                            src="{{ bike1.image.url }}"
+                            alt="{{ bike1.name }}"
+                        >
+
+                    {% else %}
+
+                        <div class="bike-no-image">
+                            🏍️
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="bike-result-content">
+
+                    <h3>
+                        {{ bike1.name }}
+                    </h3>
+
+
+                    <div class="bike-brand">
+                        {{ bike1.brand }}
+                    </div>
+
+
+                    <table class="spec-table">
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Price
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.price|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Engine
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.engine|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Mileage
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.mileage|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Power
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.power|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Torque
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.torque|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Top Speed
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.top_speed|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Brakes / ABS
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike1.brakes_abs|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BIKE 2
+        ================================================= -->
+
+        <div class="col-md-6">
+
+            <div class="bike-result-card">
+
+
+                <div class="bike-image-box">
+
+                    {% if bike2.image %}
+
+                        <img
+                            src="{{ bike2.image.url }}"
+                            alt="{{ bike2.name }}"
+                        >
+
+                    {% else %}
+
+                        <div class="bike-no-image">
+                            🏍️
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="bike-result-content">
+
+                    <h3>
+                        {{ bike2.name }}
+                    </h3>
+
+
+                    <div class="bike-brand">
+                        {{ bike2.brand }}
+                    </div>
+
+
+                    <table class="spec-table">
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Price
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.price|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Engine
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.engine|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Mileage
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.mileage|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Power
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.power|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Torque
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.torque|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Top Speed
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.top_speed|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="spec-name">
+                                Brakes / ABS
+                            </td>
+
+                            <td class="spec-value">
+                                {{ bike2.brakes_abs|default:"Not Available" }}
+                            </td>
+
+                        </tr>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- =================================================
+         EMPTY STATE
+    ================================================= -->
+
+    <div class="empty-result">
+
+        <h4>
+            🏍️ Ready to Compare?
+        </h4>
+
+
+        <p>
+            Select two bikes above and click
+            <strong>Compare Bikes</strong>
+            to see their specifications.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+</main>
+
+
+</body>
+
+</html>

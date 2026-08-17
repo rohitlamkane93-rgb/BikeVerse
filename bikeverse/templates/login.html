@@ -1,0 +1,1138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | BikeVerse</title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         MAIN CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+            min-height: 100%;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37,99,235,0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(124,58,237,0.14),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #07111f 0%,
+                    #0f1b33 50%,
+                    #142553 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           WRAPPER
+        ===================================================== */
+
+        .login-wrapper {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            animation:
+                pageReveal
+                0.75s
+                cubic-bezier(.2,.7,.2,1)
+                both;
+        }
+
+
+        @keyframes pageReveal {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    scale(0.97);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOGIN CARD
+        ===================================================== */
+
+        .login-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                34px 30px 25px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.35);
+
+            box-shadow:
+                0 25px 65px
+                rgba(0,0,0,0.28);
+
+            backdrop-filter:
+                blur(12px);
+
+        }
+
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 170px;
+
+            height: 170px;
+
+            border-radius: 50%;
+
+            top: -95px;
+
+            right: -65px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(37,99,235,0.14),
+                    rgba(37,99,235,0)
+                );
+
+        }
+
+
+        .login-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+
+            height: 130px;
+
+            border-radius: 50%;
+
+            bottom: -90px;
+
+            left: -65px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124,58,237,0.10),
+                    rgba(124,58,237,0)
+                );
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .login-header {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+
+            margin-bottom: 24px;
+        }
+
+
+        .logo-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            margin:
+                0 auto 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            color: white;
+
+            font-size: 27px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,99,235,0.28);
+
+            animation:
+                logoFloat
+                2.6s
+                ease-in-out
+                infinite;
+        }
+
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-3px);
+            }
+
+        }
+
+
+        .login-header h1 {
+
+            margin: 0;
+
+            color: #111827;
+
+            font-size: 28px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            letter-spacing: -0.6px;
+        }
+
+
+        .login-header p {
+
+            margin:
+                7px 0 0;
+
+            color: #6b7280;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           MESSAGES
+        ===================================================== */
+
+        .messages {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-bottom: 15px;
+        }
+
+
+        .message {
+
+            margin-bottom: 7px;
+
+            padding:
+                10px 12px;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            border:
+                1px solid #fecaca;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .login-form {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 16px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #374151;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .input-wrap {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 13px;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 15px;
+
+            opacity: 0.65;
+
+            pointer-events: none;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 45px;
+
+            padding:
+                0 13px 0 38px;
+
+            border:
+                1px solid #dbe2ea;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            color: #111827;
+
+            background: #ffffff;
+
+            font-size: 12px;
+
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #9ca3af;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37,99,235,0.10);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 46px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            margin-top: 3px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.15px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 9px 20px
+                rgba(37,99,235,0.22);
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 13px 25px
+                rgba(37,99,235,0.28);
+        }
+
+
+        .login-button:active {
+
+            transform:
+                translateY(0)
+                scale(0.99);
+        }
+
+
+        /* =====================================================
+           LINKS
+        ===================================================== */
+
+        .register-link {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #6b7280;
+
+            font-size: 11px;
+        }
+
+
+        .register-link a {
+
+            color: #2563eb;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .register-link a:hover {
+
+            color: #1d4ed8;
+
+            text-decoration: underline;
+        }
+
+
+        .back-home {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: block;
+
+            width: fit-content;
+
+            margin:
+                10px auto 0;
+
+            color: #6b7280;
+
+            text-decoration: none;
+
+            font-size: 10px;
+
+            transition:
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .back-home:hover {
+
+            color: #2563eb;
+
+            transform:
+                translateX(-2px);
+        }
+
+
+        /* =====================================================
+           PREMIUM DEVELOPER CREDIT
+        ===================================================== */
+
+        .developer-credit {
+
+            position: relative;
+
+            z-index: 2;
+
+            overflow: hidden;
+
+            margin-top: 19px;
+
+            padding:
+                13px 15px;
+
+            text-align: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,0.07),
+                    rgba(124,58,237,0.07)
+                );
+
+            border:
+                1px solid
+                rgba(37,99,235,0.12);
+
+            box-shadow:
+                inset 0 1px 0
+                rgba(255,255,255,0.8);
+
+            animation:
+                creditReveal
+                0.7s
+                ease-out
+                0.25s
+                both;
+        }
+
+
+        .developer-credit::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 85px;
+
+            height: 85px;
+
+            border-radius: 50%;
+
+            top: -48px;
+
+            right: -32px;
+
+            background:
+                rgba(37,99,235,0.08);
+
+            pointer-events: none;
+        }
+
+
+        .developer-credit::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 50%;
+
+            bottom: -44px;
+
+            left: -28px;
+
+            background:
+                rgba(124,58,237,0.06);
+
+            pointer-events: none;
+        }
+
+
+        .credit-line {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            color: #94a3b8;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .credit-icon {
+
+            color: #7c3aed;
+
+            font-size: 8px;
+
+            line-height: 1;
+
+            animation:
+                diamondPulse
+                1.8s
+                ease-in-out
+                infinite;
+        }
+
+
+        .credit-names {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color:
+                transparent;
+
+            background-clip: text;
+        }
+
+
+        .credit-names span {
+
+            padding:
+                0 3px;
+
+            color: #cbd5e1;
+
+            -webkit-text-fill-color:
+                #cbd5e1;
+        }
+
+
+        .credit-brand {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 4px;
+
+            color: #9ca3af;
+
+            font-size: 7px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.7px;
+        }
+
+
+        .credit-brand span {
+
+            padding:
+                0 2px;
+
+            color: #cbd5e1;
+        }
+
+
+        @keyframes creditReveal {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(8px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes diamondPulse {
+
+            0%,
+            100% {
+
+                transform:
+                    scale(1)
+                    rotate(0deg);
+
+                opacity: 0.65;
+            }
+
+            50% {
+
+                transform:
+                    scale(1.25)
+                    rotate(12deg);
+
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 480px) {
+
+            body {
+
+                padding:
+                    15px;
+            }
+
+
+            .login-card {
+
+                padding:
+                    28px 20px 22px;
+
+                border-radius: 19px;
+            }
+
+
+            .login-header h1 {
+
+                font-size: 25px;
+            }
+
+
+            .logo-icon {
+
+                width: 53px;
+
+                height: 53px;
+
+                font-size: 24px;
+            }
+
+
+            .credit-names {
+
+                font-size: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-wrapper">
+
+
+    <div class="login-card">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <div class="login-header">
+
+
+            <div class="logo-icon">
+                🏍️
+            </div>
+
+
+            <h1>
+                BikeVerse
+            </h1>
+
+
+            <p>
+                Login to continue your journey
+            </p>
+
+
+        </div>
+
+
+        <!-- =================================================
+             MESSAGES
+        ================================================== -->
+
+        {% if messages %}
+
+        <div class="messages">
+
+            {% for message in messages %}
+
+            <div class="message">
+                {{ message }}
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- =================================================
+             LOGIN FORM
+        ================================================== -->
+
+        <form
+            method="POST"
+            class="login-form"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+
+                <label for="username">
+                    Username
+                </label>
+
+
+                <div class="input-wrap">
+
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <div class="input-wrap">
+
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                🔐 Login to BikeVerse
+            </button>
+
+
+        </form>
+
+
+        <!-- =================================================
+             REGISTER LINK
+        ================================================== -->
+
+        <div class="register-link">
+
+            Don't have an account?
+
+            <a
+                href="{% url 'register' %}"
+            >
+                Create Account
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             HOME
+        ================================================== -->
+
+        <a
+            href="{% url 'home' %}"
+            class="back-home"
+        >
+            ← Back to BikeVerse
+        </a>
+
+
+        <!-- =================================================
+             PREMIUM CREDIT
+        ================================================== -->
+
+        <div class="developer-credit">
+
+
+            <div class="credit-line">
+
+                <span class="credit-icon">
+                    ◆
+                </span>
+
+                <span>
+                    Crafted by
+                </span>
+
+            </div>
+
+
+            <div class="credit-names">
+
+                Rohit Lamkane
+
+                <span>
+                    •
+                </span>
+
+                Ramkrushna Sathe
+
+            </div>
+
+
+            <div class="credit-brand">
+
+                BIKEVERSE
+
+                <span>
+                    •
+                </span>
+
+                2026
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
