@@ -7,825 +7,1257 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BikeVerse | Popular Brands</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
     >
 
-    <title>Popular Brands | BikeVerse</title>
-
-
-    <!-- ================= BOOTSTRAP ================= -->
-
+    <!-- BOOTSTRAP -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
 
-    <style>
+<style>
 
-        /* =====================================================
-           GLOBAL
-        ===================================================== */
+/* =====================================================
+   PREMIUM COLOR SYSTEM
+===================================================== */
 
-        * {
-            box-sizing: border-box;
-        }
+:root {
 
+    --black: #090909;
+    --black-soft: #111111;
+    --charcoal: #191919;
 
-        body {
+    --gold: #D6B36A;
+    --gold-light: #E8CF91;
+    --gold-dark: #B9944F;
 
-            margin: 0;
+    --ivory: #F4EFE4;
+    --cream: #DED6C7;
+    --muted: #99958C;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #f8fafc,
-                    #eef2ff
-                );
+    --line: rgba(214,179,106,0.22);
+}
 
-            color: #111827;
 
-            font-family:
-                "Segoe UI",
-                Arial,
-                Helvetica,
-                sans-serif;
+/* =====================================================
+   GLOBAL
+===================================================== */
 
-            min-height: 100vh;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
-        /* =====================================================
-           NAVBAR
-        ===================================================== */
+body {
 
-        .brands-navbar {
+    min-height: 100vh;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #0b1120,
-                    #172554
-                );
+    background: var(--black);
 
-            padding:
-                11px 0;
+    color: var(--ivory);
 
-            box-shadow:
-                0 5px 20px
-                rgba(15,23,42,0.18);
+    font-family:
+        "Sora",
+        sans-serif;
 
-            position: relative;
+    overflow-x: hidden;
+}
 
-            z-index: 10;
 
-            animation:
-                navSlide
-                0.6s
-                ease-out;
-        }
+/* =====================================================
+   NAVBAR
+===================================================== */
 
+.main-navbar {
 
-        @keyframes navSlide {
+    position: relative;
 
-            from {
+    z-index: 1000;
 
-                opacity: 0;
+    width: 100%;
 
-                transform:
-                    translateY(-15px);
-            }
+    padding: 14px 0;
 
-            to {
+    background:
+        rgba(9,9,9,0.96);
 
-                opacity: 1;
+    backdrop-filter:
+        blur(18px);
 
-                transform:
-                    translateY(0);
-            }
+    border-bottom:
+        1px solid var(--line);
 
-        }
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.35);
+}
 
 
-        .navbar-inner {
+.navbar-inner {
 
-            display: flex;
+    display: flex;
 
-            align-items: center;
+    align-items: center;
 
-            gap: 12px;
-        }
+    justify-content: space-between;
 
+    gap: 15px;
+}
 
-        .back-arrow {
 
-            width: 38px;
+/* =====================================================
+   BIKEVERSE LOGO
+===================================================== */
 
-            height: 38px;
+.navbar-brand {
 
-            display: inline-flex;
+    display: inline-flex;
 
-            align-items: center;
+    align-items: center;
 
-            justify-content: center;
+    gap: 8px;
 
-            color: white;
+    color:
+        var(--gold) !important;
 
-            text-decoration: none;
+    text-decoration: none;
 
-            font-size: 25px;
+    font-family:
+        "Outfit",
+        sans-serif;
 
-            border-radius: 50%;
+    font-size: 23px;
 
-            background:
-                rgba(255,255,255,0.07);
+    font-weight: 800;
 
-            transition:
-                all 0.25s ease;
-        }
+    letter-spacing: -0.7px;
 
+    transition:
+        all 0.3s ease;
+}
 
-        .back-arrow:hover {
 
-            color: white;
+.navbar-brand:hover {
 
-            background:
-                rgba(255,255,255,0.16);
+    color:
+        var(--gold-light) !important;
 
-            transform:
-                translateX(-4px);
-        }
+    transform:
+        translateY(-2px);
+}
 
 
-        .logo {
+/* =====================================================
+   NAV BUTTONS
+===================================================== */
 
-            color: white;
+.navbar-actions {
 
-            text-decoration: none;
+    display: flex;
 
-            font-size: 20px;
+    align-items: center;
 
-            font-weight: 800;
+    justify-content: flex-end;
 
-            letter-spacing: -0.2px;
+    gap: 8px;
 
-            transition:
-                transform 0.25s ease;
-        }
+    flex-wrap: wrap;
+}
 
 
-        .logo:hover {
+.nav-action {
 
-            color: white;
+    display: inline-flex;
 
-            transform:
-                scale(1.03);
-        }
+    align-items: center;
 
+    justify-content: center;
 
-        /* =====================================================
-           PAGE HEADER
-        ===================================================== */
+    min-height: 34px;
 
-        .brands-page {
+    padding: 7px 13px;
 
-            padding:
-                45px 0 55px;
-        }
+    border-radius: 8px;
 
+    text-decoration: none;
 
-        .page-header {
+    color:
+        var(--cream);
 
-            text-align: center;
+    background:
+        rgba(255,255,255,0.035);
 
-            margin-bottom: 30px;
+    border:
+        1px solid
+        rgba(244,239,228,0.12);
 
-            animation:
-                headerReveal
-                0.7s
-                ease-out;
-        }
+    font-size: 10px;
 
+    font-weight: 700;
 
-        @keyframes headerReveal {
+    transition:
+        all 0.3s ease;
+}
 
-            from {
 
-                opacity: 0;
+.nav-action:hover {
 
-                transform:
-                    translateY(18px);
-            }
+    color:
+        var(--gold-light);
 
-            to {
+    background:
+        rgba(214,179,106,0.08);
 
-                opacity: 1;
+    border-color:
+        var(--line);
 
-                transform:
-                    translateY(0);
-            }
+    transform:
+        translateY(-2px);
+}
 
-        }
 
+.nav-register {
 
-        .page-header span {
+    color:
+        var(--gold);
 
-            display: inline-block;
+    border-color:
+        rgba(214,179,106,0.35);
 
-            color: #2563eb;
+    background:
+        rgba(214,179,106,0.07);
+}
 
-            font-size: 10px;
 
-            font-weight: 800;
+.nav-register:hover {
 
-            letter-spacing: 2px;
+    color:
+        var(--black);
 
-            margin-bottom: 5px;
-        }
+    background:
+        var(--gold);
 
+    border-color:
+        var(--gold);
+}
 
-        .page-header h1 {
 
-            margin: 0;
+/* =====================================================
+   MAIN PAGE
+===================================================== */
 
-            font-size: 32px;
+.brands-page {
 
-            font-weight: 800;
+    position: relative;
 
-            letter-spacing: -0.5px;
+    min-height:
+        calc(100vh - 70px);
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #111827,
-                    #2563eb,
-                    #7c3aed
-                );
+    padding:
+        42px 0 48px;
 
-            -webkit-background-clip: text;
+    overflow: hidden;
 
-            -webkit-text-fill-color:
-                transparent;
+    background:
 
-            background-clip: text;
-        }
+        radial-gradient(
+            circle at 88% 8%,
+            rgba(214,179,106,0.13),
+            transparent 25%
+        ),
 
+        radial-gradient(
+            circle at 8% 75%,
+            rgba(214,179,106,0.09),
+            transparent 27%
+        ),
 
-        .page-header p {
+        linear-gradient(
+            135deg,
+            #090909 0%,
+            #111111 48%,
+            #181818 100%
+        );
+}
 
-            margin:
-                7px 0 0;
 
-            color: #64748b;
+/* =====================================================
+   GOLD FLOATING GLOW
+===================================================== */
 
-            font-size: 13px;
-        }
+.brands-page::before {
 
+    content: "";
 
-        /* =====================================================
-           BRANDS GRID
-        ===================================================== */
+    position: absolute;
 
-        .brands-grid {
+    width: 360px;
 
-            display: grid;
+    height: 360px;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    top: -180px;
 
-            gap: 16px;
-        }
+    right: -100px;
 
+    border-radius: 50%;
 
-        /* =====================================================
-           BRAND CARD
-        ===================================================== */
+    background:
+        rgba(214,179,106,0.11);
 
-        .brand-card {
+    filter:
+        blur(35px);
 
-            --accent: #2563eb;
+    animation:
+        goldFloat 8s ease-in-out infinite;
 
-            --soft: #eff6ff;
+    pointer-events: none;
+}
 
-            position: relative;
 
-            min-height: 145px;
+.brands-page::after {
 
-            background: white;
+    content: "";
 
-            border:
-                1px solid #e5e7eb;
+    position: absolute;
 
-            border-radius: 17px;
+    width: 280px;
 
-            padding:
-                20px;
+    height: 280px;
 
-            text-decoration: none;
+    bottom: -150px;
 
-            color: #111827;
+    left: -100px;
 
-            display: flex;
+    border-radius: 50%;
 
-            flex-direction: column;
+    background:
+        rgba(214,179,106,0.08);
 
-            justify-content: space-between;
+    filter:
+        blur(35px);
 
-            overflow: hidden;
+    animation:
+        goldFloat 9s ease-in-out infinite reverse;
 
-            box-shadow:
-                0 7px 20px
-                rgba(15,23,42,0.06);
+    pointer-events: none;
+}
 
-            transform:
-                translateY(24px);
 
-            opacity: 0;
+@keyframes goldFloat {
 
-            animation:
-                cardEnter
-                0.65s
-                cubic-bezier(.2,.7,.2,1)
-                forwards;
+    0%,
+    100% {
 
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
-        }
+        transform:
+            translate(0,0)
+            scale(1);
+    }
 
+    50% {
 
-        .brand-card:nth-child(1) {
-            animation-delay: 0.08s;
-        }
+        transform:
+            translate(18px,-14px)
+            scale(1.08);
+    }
+}
 
-        .brand-card:nth-child(2) {
-            animation-delay: 0.16s;
-        }
 
-        .brand-card:nth-child(3) {
-            animation-delay: 0.24s;
-        }
+/* =====================================================
+   CONTENT
+===================================================== */
 
-        .brand-card:nth-child(4) {
-            animation-delay: 0.32s;
-        }
+.brands-content {
 
-        .brand-card:nth-child(5) {
-            animation-delay: 0.40s;
-        }
+    position:
+        relative;
 
-        .brand-card:nth-child(6) {
-            animation-delay: 0.48s;
-        }
+    z-index:
+        5;
+}
 
-        .brand-card:nth-child(7) {
-            animation-delay: 0.56s;
-        }
 
+/* =====================================================
+   BACK BUTTON
+===================================================== */
 
-        @keyframes cardEnter {
+.back-button {
 
-            0% {
+    display:
+        inline-flex;
 
-                opacity: 0;
+    align-items:
+        center;
 
-                transform:
-                    translateY(24px)
-                    scale(0.96);
-            }
+    gap:
+        7px;
 
-            70% {
+    margin-bottom:
+        24px;
 
-                opacity: 1;
+    padding:
+        7px 12px;
 
-                transform:
-                    translateY(-3px)
-                    scale(1.01);
-            }
+    color:
+        var(--cream);
 
-            100% {
+    text-decoration:
+        none;
 
-                opacity: 1;
+    background:
+        rgba(255,255,255,0.035);
 
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
+    border:
+        1px solid
+        rgba(214,179,106,0.20);
 
-        }
+    border-radius:
+        8px;
 
+    font-size:
+        9px;
 
-        /* =====================================================
-           BRAND COLORS
-        ===================================================== */
+    font-weight:
+        700;
 
-        .brand-card:nth-child(1) {
+    transition:
+        all 0.3s ease;
+}
 
-            --accent: #ef4444;
 
-            --soft: #fef2f2;
-        }
+.back-button:hover {
 
+    color:
+        var(--gold-light);
 
-        .brand-card:nth-child(2) {
+    border-color:
+        rgba(214,179,106,0.55);
 
-            --accent: #dc2626;
+    background:
+        rgba(214,179,106,0.08);
 
-            --soft: #fef2f2;
-        }
+    transform:
+        translateX(-4px);
+}
 
 
-        .brand-card:nth-child(3) {
+.back-arrow {
 
-            --accent: #2563eb;
+    font-size:
+        14px;
 
-            --soft: #eff6ff;
-        }
+    transition:
+        transform 0.3s ease;
+}
 
 
-        .brand-card:nth-child(4) {
+.back-button:hover .back-arrow {
 
-            --accent: #f97316;
+    transform:
+        translateX(-4px);
+}
 
-            --soft: #fff7ed;
-        }
 
+/* =====================================================
+   HEADING
+===================================================== */
 
-        .brand-card:nth-child(5) {
+.brands-heading {
 
-            --accent: #7c3aed;
+    text-align:
+        center;
 
-            --soft: #f5f3ff;
-        }
+    max-width:
+        680px;
 
+    margin:
+        0 auto 30px;
 
-        .brand-card:nth-child(6) {
+    animation:
+        headingReveal
+        0.8s
+        ease-out;
+}
 
-            --accent: #0f766e;
 
-            --soft: #f0fdfa;
-        }
+@keyframes headingReveal {
 
+    from {
 
-        .brand-card:nth-child(7) {
+        opacity: 0;
 
-            --accent: #111827;
+        transform:
+            translateY(20px);
+    }
 
-            --soft: #f3f4f6;
-        }
+    to {
 
+        opacity: 1;
 
-        /* =====================================================
-           GLOW
-        ===================================================== */
+        transform:
+            translateY(0);
+    }
+}
 
-        .brand-card::before {
 
-            content: "";
+.heading-small {
 
-            position: absolute;
+    display:
+        inline-block;
 
-            width: 120px;
+    margin-bottom:
+        7px;
 
-            height: 120px;
+    color:
+        var(--gold);
 
-            border-radius: 50%;
+    font-size:
+        8px;
 
-            background:
-                var(--soft);
+    font-weight:
+        800;
 
-            right: -42px;
+    letter-spacing:
+        2.5px;
 
-            top: -42px;
+    text-transform:
+        uppercase;
+}
 
-            transition:
-                transform 0.4s ease;
-        }
 
+.brands-heading h1 {
 
-        .brand-card::after {
+    margin:
+        0;
 
-            content: "";
+    color:
+        var(--ivory);
 
-            position: absolute;
+    font-family:
+        "Outfit",
+        sans-serif;
 
-            left: 0;
+    font-size:
+        clamp(34px, 4.5vw, 50px);
 
-            top: 0;
+    line-height:
+        1;
 
-            width: 4px;
+    font-weight:
+        800;
 
-            height: 100%;
+    letter-spacing:
+        -1.8px;
+}
 
-            background:
-                var(--accent);
 
-            transform:
-                scaleY(0);
+.brands-heading h1 span {
 
-            transform-origin:
-                bottom;
+    color:
+        var(--gold);
 
-            transition:
-                transform 0.35s ease;
-        }
+    text-shadow:
+        0 0 25px
+        rgba(214,179,106,0.18);
+}
 
 
-        /* =====================================================
-           HOVER
-        ===================================================== */
+.brands-heading p {
 
-        .brand-card:hover {
+    max-width:
+        530px;
 
-            color: #111827;
+    margin:
+        11px auto 0;
 
-            transform:
-                translateY(-7px);
+    color:
+        var(--muted);
 
-            border-color:
-                rgba(37,99,235,0.20);
+    font-size:
+        10px;
 
-            box-shadow:
-                0 16px 30px
-                rgba(15,23,42,0.12);
-        }
+    line-height:
+        1.6;
 
+    font-weight:
+        500;
+}
 
-        .brand-card:hover::before {
 
-            transform:
-                scale(1.7);
-        }
+/* =====================================================
+   GOLD LINE
+===================================================== */
 
+.gold-line {
 
-        .brand-card:hover::after {
+    width:
+        55px;
 
-            transform:
-                scaleY(1);
-        }
+    height:
+        2px;
 
+    margin:
+        13px auto 0;
 
-        /* =====================================================
-           CARD CONTENT
-        ===================================================== */
+    border-radius:
+        50px;
 
-        .brand-top {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
 
-            position: relative;
+    box-shadow:
+        0 0 12px
+        rgba(214,179,106,0.35);
+}
 
-            z-index: 2;
 
-            color: #94a3b8;
+/* =====================================================
+   BRAND GRID
+===================================================== */
 
-            font-size: 9px;
+.brands-grid {
 
-            font-weight: 800;
+    display:
+        grid;
 
-            letter-spacing: 1.5px;
+    grid-template-columns:
+        repeat(4, 1fr);
 
-            margin-bottom: 4px;
-        }
+    gap:
+        15px;
 
+    max-width:
+        1050px;
 
-        /* =====================================================
-           SMALL BRAND NAMES
-        ===================================================== */
+    margin:
+        0 auto;
+}
 
-        .brand-name {
 
-            position: relative;
+/* =====================================================
+   BRAND CARD
+===================================================== */
 
-            z-index: 2;
+.brand-card {
 
-            font-size: 15px;
+    position:
+        relative;
 
-            line-height: 1.2;
+    height:
+        125px;
 
-            font-weight: 750;
+    display:
+        flex;
 
-            letter-spacing: 0;
+    flex-direction:
+        column;
 
-            transition:
-                transform 0.25s ease,
-                color 0.25s ease;
-        }
+    align-items:
+        center;
 
+    justify-content:
+        center;
 
-        .brand-card:hover .brand-name {
+    padding:
+        15px;
 
-            color:
-                var(--accent);
+    text-decoration:
+        none;
 
-            transform:
-                translateX(3px);
-        }
+    overflow:
+        hidden;
 
+    border-radius:
+        14px;
 
-        /* =====================================================
-           BOTTOM
-        ===================================================== */
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,38,38,0.95),
+            rgba(18,18,18,0.98)
+        );
 
-        .brand-bottom {
+    border:
+        1px solid
+        rgba(214,179,106,0.17);
 
-            position: relative;
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,0.30);
 
-            z-index: 2;
+    transition:
+        all 0.4s ease;
 
-            display: flex;
+    animation:
+        cardReveal
+        0.7s
+        ease both;
+}
 
-            align-items: center;
 
-            justify-content: space-between;
+@keyframes cardReveal {
 
-            margin-top: 18px;
-        }
+    from {
 
+        opacity:
+            0;
 
-        .explore-text {
+        transform:
+            translateY(18px);
+    }
 
-            color: #64748b;
+    to {
 
-            font-size: 11px;
+        opacity:
+            1;
 
-            font-weight: 600;
-        }
+        transform:
+            translateY(0);
+    }
+}
 
 
-        .brand-arrow {
+/* =====================================================
+   CARD SHINE
+===================================================== */
 
-            width: 31px;
+.brand-card::before {
 
-            height: 31px;
+    content:
+        "";
 
-            border-radius: 50%;
+    position:
+        absolute;
 
-            display: flex;
+    top:
+        0;
 
-            align-items: center;
+    left:
+        -140%;
 
-            justify-content: center;
+    width:
+        80%;
 
-            background:
-                var(--soft);
+    height:
+        100%;
 
-            color:
-                var(--accent);
+    background:
+        linear-gradient(
+            110deg,
+            transparent,
+            rgba(232,207,145,0.20),
+            transparent
+        );
 
-            font-size: 17px;
+    transform:
+        skewX(-22deg);
 
-            font-weight: 700;
+    transition:
+        left 0.8s ease;
 
-            transition:
-                all 0.3s ease;
-        }
+    pointer-events:
+        none;
+}
 
 
-        .brand-card:hover .brand-arrow {
+/* =====================================================
+   CARD GLOW
+===================================================== */
 
-            background:
-                var(--accent);
+.brand-card::after {
 
-            color: white;
+    content:
+        "";
 
-            transform:
-                translateX(5px)
-                rotate(-5deg);
-        }
+    position:
+        absolute;
 
+    width:
+        100px;
 
-        /* =====================================================
-           SHINE EFFECT
-        ===================================================== */
+    height:
+        100px;
 
-        .brand-card .shine {
+    top:
+        -50px;
 
-            position: absolute;
+    right:
+        -50px;
 
-            top: -70%;
+    border-radius:
+        50%;
 
-            left: -130%;
+    background:
+        rgba(214,179,106,0.08);
 
-            width: 70%;
+    transition:
+        all 0.5s ease;
 
-            height: 240%;
+    pointer-events:
+        none;
+}
 
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,0.55),
-                    transparent
-                );
 
-            transform:
-                rotate(20deg);
+/* =====================================================
+   HOVER
+===================================================== */
 
-            transition:
-                left 0.7s ease;
+.brand-card:hover {
 
-            z-index: 3;
+    transform:
+        translateY(-7px);
 
-            pointer-events: none;
-        }
+    border-color:
+        rgba(214,179,106,0.60);
 
+    background:
+        linear-gradient(
+            145deg,
+            rgba(48,43,34,0.98),
+            rgba(21,21,21,0.99)
+        );
 
-        .brand-card:hover .shine {
+    box-shadow:
+        0 18px 38px
+        rgba(0,0,0,0.48),
+        0 0 25px
+        rgba(214,179,106,0.10);
+}
 
-            left: 150%;
-        }
 
+.brand-card:hover::before {
 
-        /* =====================================================
-           FOOTER
-        ===================================================== */
+    left:
+        150%;
+}
 
-        .mini-footer {
 
-            text-align: center;
+.brand-card:hover::after {
 
-            padding:
-                12px 10px;
+    transform:
+        scale(1.7);
 
-            color: #94a3b8;
+    background:
+        rgba(214,179,106,0.13);
+}
 
-            font-size: 10px;
 
-            border-top:
-                1px solid #e5e7eb;
+/* =====================================================
+   BRAND NAME
+===================================================== */
 
-            margin-top: 5px;
-        }
+.brand-name {
 
+    position:
+        relative;
 
-        /* =====================================================
-           TABLET
-        ===================================================== */
+    z-index:
+        3;
 
-        @media (max-width: 992px) {
+    margin:
+        0 0 7px;
 
-            .brands-grid {
+    color:
+        var(--gold-light);
 
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+    font-family:
+        "Outfit",
+        sans-serif;
 
-        }
+    font-size:
+        15px;
 
+    font-weight:
+        800;
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+    letter-spacing:
+        -0.2px;
 
-        @media (max-width: 600px) {
+    text-align:
+        center;
 
-            .brands-page {
+    transition:
+        all 0.35s ease;
+}
 
-                padding:
-                    35px 15px 45px;
-            }
 
+.brand-card:hover .brand-name {
 
-            .page-header h1 {
+    color:
+        var(--gold);
 
-                font-size: 28px;
-            }
+    transform:
+        translateY(-2px);
 
+    text-shadow:
+        0 0 15px
+        rgba(214,179,106,0.25);
+}
 
-            .page-header p {
 
-                font-size: 12px;
-            }
+/* =====================================================
+   EXPLORE TEXT
+===================================================== */
 
+.brand-explore {
 
-            .brands-grid {
+    position:
+        relative;
 
-                grid-template-columns:
-                    1fr;
+    z-index:
+        3;
 
-                gap: 12px;
-            }
+    display:
+        inline-flex;
 
+    align-items:
+        center;
 
-            .brand-card {
+    gap:
+        5px;
 
-                min-height: 130px;
+    color:
+        var(--muted);
 
-                padding:
-                    17px;
-            }
+    font-size:
+        8px;
 
+    font-weight:
+        700;
 
-            .brand-name {
+    letter-spacing:
+        0.2px;
 
-                font-size: 15px;
-            }
+    transition:
+        all 0.35s ease;
+}
 
-        }
 
-    </style>
+.brand-explore-arrow {
+
+    color:
+        rgba(214,179,106,0.60);
+
+    font-size:
+        12px;
+
+    transition:
+        all 0.35s ease;
+}
+
+
+.brand-card:hover .brand-explore {
+
+    color:
+        var(--cream);
+
+}
+
+
+.brand-card:hover .brand-explore-arrow {
+
+    color:
+        var(--gold-light);
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =====================================================
+   ALL BIKES
+===================================================== */
+
+.all-bikes-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(214,179,106,0.13),
+            rgba(18,18,18,0.98)
+        );
+
+    border-color:
+        rgba(214,179,106,0.32);
+}
+
+
+.all-bikes-card .brand-name {
+
+    color:
+        var(--gold);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.mini-footer {
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    padding:
+        23px 10px;
+
+    text-align:
+        center;
+
+    background:
+        var(--black);
+
+    border-top:
+        1px solid
+        var(--line);
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+    font-weight:
+        500;
+}
+
+
+.mini-footer span {
+
+    color:
+        var(--gold);
+
+    margin:
+        0 5px;
+}
+
+
+.mini-footer strong {
+
+    color:
+        var(--gold-light);
+
+    font-weight:
+        800;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 992px) {
+
+    .brands-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        max-width:
+            800px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .navbar-inner {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .navbar-actions {
+
+        justify-content:
+            flex-start;
+    }
+
+
+    .brands-page {
+
+        padding:
+            35px 15px 40px;
+    }
+
+
+    .brands-heading {
+
+        margin-bottom:
+            25px;
+    }
+
+
+    .brands-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            11px;
+    }
+
+
+    .brand-card {
+
+        height:
+            115px;
+    }
+
+
+    .brand-name {
+
+        font-size:
+            14px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .navbar-brand {
+
+        font-size:
+            20px;
+    }
+
+
+    .nav-action {
+
+        font-size:
+            9px;
+
+        padding:
+            6px 8px;
+    }
+
+
+    .brands-page {
+
+        padding:
+            30px 12px 35px;
+    }
+
+
+    .brands-heading h1 {
+
+        font-size:
+            34px;
+    }
+
+
+    .brands-heading p {
+
+        font-size:
+            9px;
+    }
+
+
+    .brand-card {
+
+        height:
+            105px;
+
+        border-radius:
+            12px;
+
+        padding:
+            10px;
+    }
+
+
+    .brand-name {
+
+        font-size:
+            13px;
+
+        margin-bottom:
+            5px;
+    }
+
+
+    .brand-explore {
+
+        font-size:
+            7px;
+    }
+
+
+    .brand-explore-arrow {
+
+        font-size:
+            10px;
+    }
+
+
+    .mini-footer {
+
+        font-size:
+            8px;
+    }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+
+</style>
 
 </head>
 
@@ -837,7 +1269,7 @@
      NAVBAR
 ===================================================== -->
 
-<nav class="brands-navbar">
+<nav class="main-navbar">
 
     <div class="container">
 
@@ -845,21 +1277,60 @@
 
 
             <a
+                class="navbar-brand"
                 href="{% url 'home' %}"
-                class="back-arrow"
-                title="Back Home"
-            >
-                ←
-            </a>
-
-
-            <a
-                href="{% url 'home' %}"
-                class="logo"
             >
                 🏍️ BikeVerse
             </a>
 
+
+            <div class="navbar-actions">
+
+
+                <a
+                    href="{% url 'home' %}"
+                    class="nav-action"
+                >
+                    🏠 Home
+                </a>
+
+
+                <a
+                    href="{% url 'compare_bikes' %}"
+                    class="nav-action"
+                >
+                    ⚖️ Compare
+                </a>
+
+
+                {% if user.is_authenticated %}
+
+                    <a
+                        href="{% url 'logout' %}"
+                        class="nav-action"
+                    >
+                        🚪 Logout
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="nav-action"
+                    >
+                        🔐 Login
+                    </a>
+
+                    <a
+                        href="{% url 'register' %}"
+                        class="nav-action nav-register"
+                    >
+                        📝 Register
+                    </a>
+
+                {% endif %}
+
+            </div>
 
         </div>
 
@@ -873,88 +1344,234 @@
      POPULAR BRANDS
 ===================================================== -->
 
-<section class="brands-page">
-
-    <div class="container">
+<main class="brands-page">
 
 
-        <div class="page-header">
+    <div class="container brands-content">
 
-            <span>
-                EXPLORE BIKEVERSE
+
+        <!-- BACK -->
+
+        <a
+            href="{% url 'home' %}"
+            class="back-button"
+        >
+
+            <span class="back-arrow">
+                ←
+            </span>
+
+            Back to Home
+
+        </a>
+
+
+
+        <!-- =================================================
+             HEADING
+        ================================================== -->
+
+        <div class="brands-heading">
+
+            <span class="heading-small">
+                EXPLORE
             </span>
 
 
             <h1>
-                Popular Brands
+
+                Popular
+                <span>Brands</span>
+
             </h1>
 
 
             <p>
-                Choose a brand and explore its bikes.
+
+                Explore motorcycles from India's most
+                popular and trusted bike brands.
+
             </p>
+
+
+            <div class="gold-line"></div>
 
         </div>
 
+
+
+        <!-- =================================================
+             BRAND CARDS
+        ================================================== -->
 
         <div class="brands-grid">
 
 
-            {% for brand in brands %}
-
+            <!-- HERO -->
 
             <a
-                href="{% url 'brand_bikes' brand %}"
+                href="{% url 'brand_bikes' 'Hero' %}"
                 class="brand-card"
             >
 
+                <h3 class="brand-name">
+                    Hero
+                </h3>
 
-                <span class="shine"></span>
-
-
-                <div>
-
-
-                    <div class="brand-top">
-                        BIKE BRAND
-                    </div>
-
-
-                    <div class="brand-name">
-                        {{ brand }}
-                    </div>
-
-
-                </div>
-
-
-                <div class="brand-bottom">
-
-
-                    <span class="explore-text">
-                        Explore Bikes
-                    </span>
-
-
-                    <span class="brand-arrow">
-                        →
-                    </span>
-
-
-                </div>
-
+                <span class="brand-explore">
+                    Explore Hero Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
 
             </a>
 
 
-            {% endfor %}
+
+            <!-- HONDA -->
+
+            <a
+                href="{% url 'brand_bikes' 'Honda' %}"
+                class="brand-card"
+            >
+
+                <h3 class="brand-name">
+                    Honda
+                </h3>
+
+                <span class="brand-explore">
+                    Explore Honda Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
+
+
+
+            <!-- YAMAHA -->
+
+            <a
+                href="{% url 'brand_bikes' 'Yamaha' %}"
+                class="brand-card"
+            >
+
+                <h3 class="brand-name">
+                    Yamaha
+                </h3>
+
+                <span class="brand-explore">
+                    Explore Yamaha Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
+
+
+
+            <!-- KTM -->
+
+            <a
+                href="{% url 'brand_bikes' 'KTM' %}"
+                class="brand-card"
+            >
+
+                <h3 class="brand-name">
+                    KTM
+                </h3>
+
+                <span class="brand-explore">
+                    Explore KTM Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
+
+
+
+            <!-- ROYAL ENFIELD -->
+
+            <a
+                href="{% url 'brand_bikes' 'Royal Enfield' %}"
+                class="brand-card"
+            >
+
+                <h3 class="brand-name">
+                    Royal Enfield
+                </h3>
+
+                <span class="brand-explore">
+                    Explore Royal Enfield Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
+
+
+
+            <!-- TVS -->
+
+            <a
+                href="{% url 'brand_bikes' 'TVS' %}"
+                class="brand-card"
+            >
+
+                <h3 class="brand-name">
+                    TVS
+                </h3>
+
+                <span class="brand-explore">
+                    Explore TVS Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
+
+
+
+            <!-- BAJAJ -->
+
+            <a
+                href="{% url 'brand_bikes' 'Bajaj' %}"
+                class="brand-card"
+            >
+
+                <h3 class="brand-name">
+                    Bajaj
+                </h3>
+
+                <span class="brand-explore">
+                    Explore Bajaj Bikes
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
+
+
+
+            <!-- ALL BIKES -->
+
+            <a
+                href="{% url 'popular_brands' %}"
+                class="brand-card all-bikes-card"
+            >
+
+                <h3 class="brand-name">
+                    All Bikes
+                </h3>
+
+                <span class="brand-explore">
+                    Explore Everything
+                    <span class="brand-explore-arrow">→</span>
+                </span>
+
+            </a>
 
 
         </div>
 
+
     </div>
 
-</section>
+</main>
 
 
 
@@ -964,7 +1581,15 @@
 
 <footer class="mini-footer">
 
-    © 2026 BikeVerse • Explore your perfect ride
+    © 2026 BikeVerse
+
+    <span>•</span>
+
+    Crafted by
+
+    <strong>
+        Rohit Lamkane & Ramkrushna Sathe
+    </strong>
 
 </footer>
 

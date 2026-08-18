@@ -1,692 +1,340 @@
+/* =========================================
+   BikeVerse - Final Style
+========================================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-
-/* ================================
-   BASIC
-================================ */
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: white;
 
-    font-family:
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    /* Professional bike background */
     background:
         linear-gradient(
-            135deg,
-            #eef4ff 0%,
-            #f8fafc 45%,
-            #eaf2ff 100%
-        );
+            rgba(0, 0, 0, 0.60),
+            rgba(0, 0, 0, 0.72)
+        ),
+        url("https://images.unsplash.com/photo-1558981806-ec527fa84c39");
 
-    color: #1f2937;
-
-    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 
-/* ================================
-   NAVBAR
-================================ */
+/* =========================================
+   Container
+========================================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+/* =========================================
+   Headings
+========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   Navbar
+========================================= */
 
 .navbar {
-    padding: 15px 0;
-
-    background: #111827 !important;
-
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.80) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .navbar-brand {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 800;
+    color: white !important;
+}
 
-    font-weight: 700;
+.nav-link {
+    color: white !important;
+    font-weight: 600;
+    margin: 0 5px;
+    transition: 0.3s ease;
+}
 
-    letter-spacing: 0.3px;
+.nav-link:hover {
+    color: #ffc107 !important;
+    transform: translateY(-2px);
 }
 
 
-/* ================================
-   HOME SECTION
-================================ */
+/* =========================================
+   Main Section
+========================================= */
 
-.home-section {
-
-    min-height:
-        calc(100vh - 70px);
-
+.hero-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-
-    padding:
-        70px 20px 60px;
-
-    position: relative;
-
-    overflow: hidden;
+    padding: 60px 20px;
 }
 
 
-/* Soft background circles */
-
-.home-section::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 350px;
-
-    height: 350px;
-
-    background:
-        rgba(37, 99, 235, 0.07);
-
-    border-radius: 50%;
-
-    top: -120px;
-
-    left: -100px;
-
-    pointer-events: none;
-}
-
-
-.home-section::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 400px;
-
-    height: 400px;
-
-    background:
-        rgba(59, 130, 246, 0.06);
-
-    border-radius: 50%;
-
-    bottom: -180px;
-
-    right: -120px;
-
-    pointer-events: none;
-}
-
-
-/* ================================
-   HOME CONTENT
-================================ */
-
-.home-content {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin-bottom: 55px;
-}
-
-
-.home-content h1 {
-
-    font-size: 46px;
-
-    font-weight: 700;
-
-    color: #111827;
-
-    margin-bottom: 15px;
-}
-
-
-.home-content h1 span {
-
-    color: #2563eb;
-}
-
-
-.home-content p {
-
-    font-size: 18px;
-
-    color: #64748b;
-
-    margin-bottom: 0;
-}
-
-
-/* ================================
-   SEARCH
-================================ */
+/* =========================================
+   Search Box
+========================================= */
 
 .search-box {
+    width: 100%;
+    max-width: 700px;
+    margin: 25px auto;
 
-    max-width: 600px;
+    padding: 15px;
 
-    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
 }
-
-
-.search-box form {
-
-    display: flex;
-
-    gap: 10px;
-}
-
 
 .search-box input {
-
-    flex: 1;
-
-    padding: 13px 17px;
-
-    border:
-        1px solid #dbe2ea;
-
-    border-radius: 9px;
-
-    font-size: 16px;
-
-    background: rgba(255,255,255,0.9);
-
-    color: #1f2937;
-
-    outline: none;
-
-    box-shadow:
-        0 4px 12px rgba(0,0,0,0.05);
-
-    transition: 0.2s ease;
-}
-
-
-.search-box input:focus {
-
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,0.10);
-}
-
-
-.search-box button {
-
-    padding: 13px 24px;
+    width: 100%;
+    padding: 14px 18px;
 
     border: none;
-
-    border-radius: 9px;
-
-    background: #1f2937;
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-
-.search-box button:hover {
-
-    background: #2563eb;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 6px 15px
-        rgba(37,99,235,0.22);
-}
-
-
-/* ================================
-   POPULAR BRANDS
-================================ */
-
-.brands-section {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin-top: 40px;
-}
-
-
-.brands-section h2 {
-
-    font-size: 30px;
-
-    font-weight: 700;
-
-    color: #1f2937;
-
-    margin-bottom: 8px;
-}
-
-
-.section-subtitle {
-
-    color: #64748b;
-
-    margin-bottom: 28px;
-}
-
-
-/* ================================
-   BRAND GRID
-================================ */
-
-.brand-grid {
-
-    max-width: 950px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-
-/* ================================
-   BRAND CARD
-================================ */
-
-.brand-card {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 70px;
-
-    padding: 18px 20px;
-
-    background:
-        rgba(255,255,255,0.92);
-
-    color: #1f2937 !important;
-
-    border:
-        1px solid #e2e8f0;
+    outline: none;
 
     border-radius: 12px;
 
-    text-decoration: none !important;
-
-    box-shadow:
-        0 5px 15px
-        rgba(15,23,42,0.07);
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
+    font-size: 16px;
 }
 
 
-.brand-card:hover {
+/* =========================================
+   Cards
+========================================= */
 
-    background: #1f2937;
+.card {
+    background: rgba(255, 255, 255, 0.96);
 
-    color: white !important;
-
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        0 10px 22px
-        rgba(15,23,42,0.15);
-}
-
-
-/* ================================
-   BRAND NAME
-================================ */
-
-.brand-card h3 {
-
-    color: #1f2937 !important;
-
-    font-size: 17px !important;
-
-    font-weight: 600;
-
-    margin: 0;
-
-    text-align: center;
-}
-
-
-.brand-card:hover h3 {
-
-    color: white !important;
-}
-
-
-/* Hide arrows */
-
-.brand-card .arrow {
-
-    display: none !important;
-}
-
-
-/* ================================
-   RESULTS PAGE
-================================ */
-
-.results-container {
-
-    max-width: 1000px;
-
-    margin: 0 auto;
-
-    padding: 40px 20px;
-
-    text-align: center;
-}
-
-
-/* ================================
-   BACK HOME
-================================ */
-
-.back-home {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 44px;
-
-    height: 44px;
-
-    background: white;
-
-    color: #1f2937;
-
-    border:
-        2px solid #2563eb;
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
-    font-size: 26px;
-
-    font-weight: bold;
-
-    transition: 0.2s ease;
-}
-
-
-.back-home:hover {
-
-    background: #2563eb;
-
-    color: white;
-
-    transform:
-        translateX(-3px);
-}
-
-
-/* ================================
-   BIKE GRID
-================================ */
-
-.bike-grid {
-
-    max-width: 950px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-
-/* ================================
-   BIKE CARD
-================================ */
-
-.bike-card {
-
-    background: white;
-
-    border:
-        1px solid #e2e8f0;
-
-    border-radius: 12px;
+    border: none;
+    border-radius: 18px;
 
     overflow: hidden;
 
-    text-align: center;
-
     box-shadow:
-        0 5px 15px
-        rgba(0,0,0,0.07);
+        0 10px 30px rgba(0, 0, 0, 0.35);
 
-    transition:
-        0.25s ease;
+    transition: all 0.3s ease;
 }
 
-
-.bike-card:hover {
-
-    transform:
-        translateY(-5px);
+.card:hover {
+    transform: translateY(-8px);
 
     box-shadow:
-        0 12px 25px
-        rgba(0,0,0,0.12);
+        0 18px 45px rgba(0, 0, 0, 0.50);
 }
 
-
-/* ================================
-   BIKE PHOTO
-================================ */
-
-.bike-card img {
-
+.card img {
     width: 100%;
+    height: 220px;
 
-    height: 200px;
-
-    object-fit: contain;
-
-    padding: 10px;
+    object-fit: cover;
 
     display: block;
 }
 
+.card-body {
+    padding: 20px;
+    color: #222;
+}
 
-/* ================================
-   BIKE CONTENT
-================================ */
+.card-title {
+    color: #111;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
 
-.bike-card-content {
-
-    padding: 15px;
+.card-text {
+    color: #555;
 }
 
 
-.bike-card h3 {
+/* =========================================
+   Buttons
+========================================= */
 
-    font-size: 20px;
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
 
-    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
 }
 
 
-.bike-card p {
+/* =========================================
+   Brand Buttons
+========================================= */
 
-    font-size: 15px;
-
-    color: #64748b;
-}
-
-
-/* ================================
-   DETAILS BUTTON
-================================ */
-
-.bike-card .btn,
-.view-details {
-
+.brand-btn {
     display: inline-block;
 
-    padding: 9px 18px;
+    padding: 11px 22px;
+    margin: 6px;
 
-    margin-top: 10px;
+    border-radius: 25px;
 
-    background: #1f2937;
+    background: rgba(255, 255, 255, 0.12);
 
     color: white;
-
-    border: none;
-
-    border-radius: 7px;
 
     text-decoration: none;
 
-    transition: 0.2s ease;
+    font-weight: 600;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+.brand-btn:hover {
+    background: #ffc107;
+    color: #111;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 
-.bike-card .btn:hover,
-.view-details:hover {
+/* =========================================
+   Section
+========================================= */
 
-    background: #2563eb;
-
-    color: white;
-
-    transform:
-        translateY(-2px);
+.section {
+    padding: 60px 0;
 }
 
 
-/* ================================
-   FOOTER
-================================ */
+/* =========================================
+   Footer
+========================================= */
 
 footer {
+    margin-top: 60px;
 
-    background: #111827;
-
-    color: white;
+    padding: 25px;
 
     text-align: center;
 
-    padding: 25px 0;
+    background: rgba(0, 0, 0, 0.85);
 
-    margin-top: 40px;
+    border-top:
+        1px solid rgba(255, 255, 255, 0.15);
 }
 
 
-footer p {
+/* =========================================
+   Links
+========================================= */
 
-    color: #aeb7c4;
+a {
+    transition: 0.3s ease;
 }
 
 
-footer small {
-
-    color: #94a3b8;
-}
-
-
-/* ================================
-   MOBILE
-================================ */
+/* =========================================
+   Mobile
+========================================= */
 
 @media (max-width: 768px) {
 
-    .home-section {
-
-        padding:
-            50px 15px;
+    h1 {
+        font-size: 32px;
     }
 
-
-    .home-content h1 {
-
-        font-size: 34px;
+    h2 {
+        font-size: 26px;
     }
 
-
-    .search-box form {
-
-        flex-direction: column;
+    .container {
+        width: 94%;
     }
 
-
-    .search-box button {
-
-        width: 100%;
+    .hero-section {
+        min-height: 60vh;
+        padding: 40px 15px;
     }
 
-
-    .brand-grid,
-    .bike-grid {
-
-        grid-template-columns: 1fr;
+    .card img {
+        height: 190px;
     }
 
-
-    .brands-section h2 {
-
-        font-size: 28px;
+    .navbar-brand {
+        font-size: 23px;
     }
 
-
-    .bike-card img {
-
-        height: 220px;
+    .brand-btn {
+        padding: 9px 16px;
+        margin: 4px;
     }
-
 }
 
 
-/* ================================
-   TABLET
-================================ */
+/* =========================================
+   Small Mobile
+========================================= */
 
-@media (min-width: 769px)
-       and (max-width: 1000px) {
+@media (max-width: 480px) {
 
-    .brand-grid,
-    .bike-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
+    h1 {
+        font-size: 28px;
     }
 
+    h2 {
+        font-size: 23px;
+    }
+
+    .card img {
+        height: 170px;
+    }
 }
